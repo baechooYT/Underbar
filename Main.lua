@@ -244,6 +244,6 @@ local function script5() -- main.Tween
 	textlabel2:TweenSize(UDim2.new(0, 141,0, 19),"Out","Sine",1)
 	imagelabel:TweenSize(UDim2.new(0, 19,0, 19),"Out","Sine",1)
 	
-	textlabel2.Text = "Underbar" ..ver
+	textlabel2.Text = "Underbar " ..ver
 end
 coroutine.wrap(script5)()
