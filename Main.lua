@@ -4,7 +4,8 @@ if nb_Loaded and not _G.ub_debug == true then
     local arl = Instance.new("Message",workspace)
     arl.Text = 'Underbar is Arleady running'
     wait(3)
-    arl:Destroy()
+	arl:Destroy()
+	return
 end
 
 pcall(function() getgenv().nb_Loaded  = true end)
@@ -16,7 +17,7 @@ if not game:IsLoaded() then
     ntloaded:Destroy()
 end
 
-ver = '0.1'
+ver = '0.2'
 
 plr = game:GetService("Players")
 
@@ -33,6 +34,7 @@ local UICorner_3 = Instance.new("UICorner")
 local TextLabel_2 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 
+ScreenGui.Name = math.random( 0, 255000000000 )
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -41,6 +43,7 @@ main.Parent = ScreenGui
 main.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
 main.Position = UDim2.new(0.365527481, 0, 0.365999997, 0)
 main.Size = UDim2.new(0, 362, 0, 169)
+main.ZIndex = 999999999
 
 UICorner.CornerRadius = UDim.new(0, 6)
 UICorner.Parent = main
@@ -67,7 +70,7 @@ TextLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
 TextLabel.Position = UDim2.new(0.0850000009, 0, -0.150000006, 0)
 TextLabel.Size = UDim2.new(0, 141, 0, 19)
 TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "Underbar ".. ver
+TextLabel.Text = "Underbar"
 TextLabel.TextColor3 = Color3.fromRGB(2, 216, 239)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14.000
@@ -115,6 +118,7 @@ TextButton.TextScaled = true
 TextButton.TextSize = 14.000
 TextButton.TextWrapped = true
 
+
 local function script1() -- TextLabel_2.LocalScript 
 	local script = Instance.new('LocalScript', TextLabel_2)
 
@@ -129,29 +133,90 @@ local function script1() -- TextLabel_2.LocalScript
 	end
 end
 coroutine.wrap(script1)()
-local function script2()
+local function script2() -- Gamefr.LocalScript 
 	local script = Instance.new('LocalScript', Gamefr)
 
-	if game.GameId == 5305031231 then
-		script.Parent.TextLabel.Text = "testplace"
+	if game.GameId == 3952704772 then
+		script.Parent.TextLabel.Text = "운테르 놀이터"
+	else
+		script.Parent.TextLabel.Text = "Not Surpport Game"
 	end
 end
 coroutine.wrap(script2)()
-local function script3()
+local function script3() -- main.LocalScript 
 	local script = Instance.new('LocalScript', main)
 
-	local frame = script.Parent
+	local uis = game:GetService("UserInputService")
 	
-	frame.Draggable = true
-	frame.Active = true
-	frame.Selectable = true
+	local main = script.Parent
+	local topbar = main:WaitForChild("upbar")
+	local upbar2 = main:WaitForChild("upbarui")
+	
+	local cam = workspace:WaitForChild("Camera")
+	
+	local dmp
+	local fp
+	
+	local Draggable = false
+	
+	topbar.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			Draggable = true
+			dmp = Vector2.new(input.Position.X, input.Position.Y)
+			fp = Vector2.new(main.Position.X.Scale,main.Position.Y.Scale)
+		end
+	end)
+	
+	topbar.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			Draggable = false
+		end
+	end)
+	
+	uis.InputChanged:Connect(function(input)
+		if Draggable == true then
+			local NewPosition = fp + ((Vector2.new(input.Position.X, input.Position.Y) - dmp) / cam.ViewportSize)
+			main.Position = UDim2.new(NewPosition.X, 0, NewPosition.Y, 0)
+		end
+	end)
 end
-coroutine.wrap(script3)()
-local function script4()
+coroutine.wrap(script2)()
+local function script3() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent:Destroy()
 	end)
+end
+coroutine.wrap(script3)()
+local function script4() -- main.Tween 
+	local script = Instance.new('LocalScript', main)
+
+	local main = script.Parent
+	local gamefr = main.Gamefr
+	local upbar = main.upbar
+	local upbarui = main.upbarui
+	local textbutton = main.TextButton
+	local textlabel = gamefr.TextLabel
+	local textlabel2 = upbar.TextLabel
+	local imagelabel = upbar.ImageLabel
+	
+	main.Size = UDim2.new(0,0)
+	gamefr.Size = UDim2.new(0,0)
+	upbar.Size = UDim2.new(0,0)
+	upbarui.Size = UDim2.new(0,0)
+	textlabel.Size = UDim2.new(0,0)
+	textlabel.Size = UDim2.new(0,0)
+	textlabel2.Size = UDim2.new(0,0)
+	imagelabel.Size = UDim2.new(0,0)
+	
+	main:TweenSize(UDim2.new(0, 362,0, 169),"Out","Sine",1)
+	gamefr:TweenSize(UDim2.new(0, 290,0, 116),"Out","Sine",1)
+	upbar:TweenSize(UDim2.new(0, 362,0, 19),"Out","Sine",1)
+	upbarui:TweenSize(UDim2.new(0, 362,0, 17),"Out","Sine",1)
+	textbutton:TweenSize(UDim2.new(0.933, 0,0.012, 0),"Out","Sine",1)
+	textlabel:TweenSize(UDim2.new(0, 215,0, 63),"Out","Sine",1)
+	textlabel2:TweenSize(UDim2.new(0, 141,0, 19),"Out","Sine",1)
+	imagelabel:TweenSize(UDim2.new(0, 19,0, 19),"Out","Sine",1)
 end
 coroutine.wrap(script4)()
