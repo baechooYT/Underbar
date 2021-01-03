@@ -21,7 +21,7 @@ ver = '0.2'
 
 plr = game:GetService("Players")
 
-local ScreenGui = Instance.new("ScreenGui")
+local WelcomeScreen = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local upbarui = Instance.new("Frame")
@@ -33,15 +33,16 @@ local Gamefr = Instance.new("Frame")
 local UICorner_3 = Instance.new("UICorner")
 local TextLabel_2 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
 
-ScreenGui.Name = math.random( 0, 255000000000 )
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+WelcomeScreen.Name = math.random(0,224137917)
+WelcomeScreen.Parent = game.CoreGui
+WelcomeScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 main.Name = "main"
-main.Parent = ScreenGui
+main.Parent = WelcomeScreen
 main.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
-main.Position = UDim2.new(0.365527481, 0, 0.365999997, 0)
+main.Position = UDim2.new(0.359583944, 0, 0.365999997, 0)
 main.Size = UDim2.new(0, 362, 0, 169)
 main.ZIndex = 999999999
 
@@ -50,7 +51,9 @@ UICorner.Parent = main
 
 upbarui.Name = "upbarui"
 upbarui.Parent = main
+upbarui.Active = true
 upbarui.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+upbarui.Selectable = true
 upbarui.Size = UDim2.new(0, 362, 0, 17)
 
 UICorner_2.CornerRadius = UDim.new(0, 6)
@@ -58,9 +61,11 @@ UICorner_2.Parent = upbarui
 
 upbar.Name = "upbar"
 upbar.Parent = main
+upbar.Active = true
 upbar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 upbar.BorderSizePixel = 0
 upbar.Position = UDim2.new(0, 0, 0.0295857992, 0)
+upbar.Selectable = true
 upbar.Size = UDim2.new(0, 362, 0, 19)
 
 TextLabel.Parent = upbar
@@ -105,18 +110,27 @@ TextLabel_2.TextScaled = true
 TextLabel_2.TextSize = 14.000
 TextLabel_2.TextWrapped = true
 
-TextButton.Parent = main
+TextButton.Parent = Gamefr
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.BackgroundTransparency = 1.000
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.93267554, 0, 0.0122433277, 0)
-TextButton.Size = UDim2.new(0, 17, 0, 18)
+TextButton.Size = UDim2.new(0, 290, 0, 116)
 TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "X"
-TextButton.TextColor3 = Color3.fromRGB(39, 2, 223)
-TextButton.TextScaled = true
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextButton.TextSize = 14.000
-TextButton.TextWrapped = true
+TextButton.TextTransparency = 1.000
+
+TextButton_2.Parent = main
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.BackgroundTransparency = 1.000
+TextButton_2.BorderSizePixel = 0
+TextButton_2.Position = UDim2.new(0.93267554, 0, 0.0122433277, 0)
+TextButton_2.Size = UDim2.new(0, 17, 0, 18)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = "X"
+TextButton_2.TextColor3 = Color3.fromRGB(39, 2, 223)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 14.000
+TextButton_2.TextWrapped = true
 
 
 local function script1() -- TextLabel_2.LocalScript 
@@ -141,6 +155,18 @@ local function script2() -- Gamefr.LocalScript
 	else
 		script.Parent.TextLabel.Text = "Not Surpport Game"
 	end
+end
+coroutine.wrap(script2)()
+local function LMWYIMT_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		if game.GameId == 3952704772 then
+			loadstring(game:HttpGet(("https://raw.githubusercontent.com/baechooYT/Underbar/main/Surpport_Games/Untel_game.lua"), true))()
+		else
+			loadstring(game:HttpGet(("https://raw.githubusercontent.com/baechooYT/Underbar/main/notsurpport"), true))()
+		end	
+	end)
 end
 coroutine.wrap(script2)()
 local function script3() -- main.LocalScript 
@@ -180,16 +206,14 @@ local function script3() -- main.LocalScript
 		end
 	end)
 end
-coroutine.wrap(script2)()
-local function script3() -- TextButton.LocalScript 
-	local script = Instance.new('LocalScript', TextButton)
-
+coroutine.wrap(script3)()
+local function script4() -- TextButton_2.LocalScript 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent:Destroy()
-	end)
-end
-coroutine.wrap(script3)()
-local function script4() -- main.Tween 
+	end
+end)
+coroutine.wrap(script4)()
+local function script5() -- main.Tween 
 	local script = Instance.new('LocalScript', main)
 
 	local main = script.Parent
@@ -209,14 +233,17 @@ local function script4() -- main.Tween
 	textlabel.Size = UDim2.new(0,0)
 	textlabel2.Size = UDim2.new(0,0)
 	imagelabel.Size = UDim2.new(0,0)
+	textbutton.Size = UDim2.new(0,0)
 	
 	main:TweenSize(UDim2.new(0, 362,0, 169),"Out","Sine",1)
 	gamefr:TweenSize(UDim2.new(0, 290,0, 116),"Out","Sine",1)
 	upbar:TweenSize(UDim2.new(0, 362,0, 19),"Out","Sine",1)
 	upbarui:TweenSize(UDim2.new(0, 362,0, 17),"Out","Sine",1)
-	textbutton:TweenSize(UDim2.new(0.933, 0,0.012, 0),"Out","Sine",1)
+	textbutton:TweenSize(UDim2.new(0, 17,0, 18),"Out","Sine",1)
 	textlabel:TweenSize(UDim2.new(0, 215,0, 63),"Out","Sine",1)
 	textlabel2:TweenSize(UDim2.new(0, 141,0, 19),"Out","Sine",1)
 	imagelabel:TweenSize(UDim2.new(0, 19,0, 19),"Out","Sine",1)
+	
+	textlabel2.Text = "Underbar" ..ver
 end
-coroutine.wrap(script4)()
+coroutine.wrap(script5)()
