@@ -35,6 +35,8 @@ local TextLabel_2 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 local TextButton_2 = Instance.new("TextButton")
 
+
+
 WelcomeScreen.Name = math.random(0,224137917)
 WelcomeScreen.Parent = game.CoreGui
 WelcomeScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -133,6 +135,7 @@ TextButton_2.TextSize = 14.000
 TextButton_2.TextWrapped = true
 
 
+
 local function script1() -- TextLabel_2.LocalScript 
 	local script = Instance.new('LocalScript', TextLabel_2)
 
@@ -157,7 +160,7 @@ local function script2() -- Gamefr.LocalScript
 	end
 end
 coroutine.wrap(script2)()
-local function LMWYIMT_fake_script() -- TextButton.LocalScript 
+local function script3() -- TextButton.LocalScript 
 	local script = Instance.new('LocalScript', TextButton)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -168,8 +171,8 @@ local function LMWYIMT_fake_script() -- TextButton.LocalScript
 		end	
 	end)
 end
-coroutine.wrap(script2)()
-local function script3() -- main.LocalScript 
+coroutine.wrap(script3)()
+local function script4() -- main.LocalScript 
 	local script = Instance.new('LocalScript', main)
 
 	local uis = game:GetService("UserInputService")
@@ -206,14 +209,16 @@ local function script3() -- main.LocalScript
 		end
 	end)
 end
-coroutine.wrap(script3)()
-local function script4() -- TextButton_2.LocalScript 
+coroutine.wrap(script4)()
+local function script5() -- TextButton_2.LocalScript 
+	local script = Instance.new('LocalScript', TextButton_2)
+
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent:Destroy()
-	end
-end)
-coroutine.wrap(script4)()
-local function script5() -- main.Tween 
+	end)
+end
+coroutine.wrap(script5)()
+local function script6() -- main.Tween 
 	local script = Instance.new('LocalScript', main)
 
 	local main = script.Parent
@@ -243,7 +248,8 @@ local function script5() -- main.Tween
 	textlabel:TweenSize(UDim2.new(0, 215,0, 63),"Out","Sine",1)
 	textlabel2:TweenSize(UDim2.new(0, 141,0, 19),"Out","Sine",1)
 	imagelabel:TweenSize(UDim2.new(0, 19,0, 19),"Out","Sine",1)
+	main:TweenPosition(UDim2.new({0, 0},0, 0),"Out","Sine",1)
 	
 	textlabel2.Text = "Underbar" ..ver
 end
-coroutine.wrap(script5)()
+coroutine.wrap(script6)()
