@@ -250,6 +250,10 @@ local function script6() -- main.Tween
 	imagelabel:TweenSize(UDim2.new(0, 19,0, 19),"Out","Sine",1)
 	main:TweenPosition(UDim2.new({0, 0},0, 0),"Out","Sine",1)
 	
-	textlabel2.Text = "Underbar" ..ver
+	textlabel2.Text = "Underbar " ..ver
 end
+<<<<<<< HEAD
 coroutine.wrap(script6)()
+=======
+coroutine.wrap(script5)()
+>>>>>>> ceb5471bf353cc9f3b8b74e063dbc27705cade80
