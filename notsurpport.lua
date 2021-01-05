@@ -1,1 +1,3 @@
-print("귀찮음")
+--not surpport.lua last edit by baechoo_YT
+
+print("not surpport game")
