@@ -1,4 +1,4 @@
---not surpport.lua last edit by baechoo_YT
+--main.lua last edit by baechoo_YT
 
 if nb_Loaded and not _G.ub_debug == true then
     local arl = Instance.new("Message",workspace)
